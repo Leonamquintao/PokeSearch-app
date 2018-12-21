@@ -10,17 +10,13 @@ export default class Landing extends Component {
         <Image source={ backgroundImage } style={styles.bkContainer} />
           <View style={ styles.innerView }>
             <Text style={ styles.title }>Welcome to Pokesearch </Text>
-            <Button onPress={ this.redirect.bind(this) } title="Enter Here!" color="#3544a3" />
+            <Button onPress={ () => this.props.navigate("search") } title="Enter Here!" color="#3544a3" />
           </View>
       </View>
     );
   }
 
   /* METHODS */
-  redirect() {
-    alert('Clicked Here!!!')
-  }
-  
 }
 
 const styles = StyleSheet.create({
