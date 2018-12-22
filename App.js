@@ -4,7 +4,9 @@ import Landing from './src/pages/Landing';
 import Search from './src/pages/Search';
 
 export default class App extends Component {
-  state = { rootPage: 'landing' }
+
+  state = { rootPage: 'search', pokeSearch: '' }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
