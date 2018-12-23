@@ -10,7 +10,7 @@ export default class Search extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { pokeSearch: '', loading: false, };
+    this.state = { pokeSearch: '', loading: false, data: { } };
   }
 
   render() {
@@ -32,13 +32,14 @@ export default class Search extends Component {
   }
 
   searchPokemon() {
-    let pokemon = this.state.pokeSearch.toLowerCase()
-    console.log('pokemon => ', pokemon);
     this.setState({ loading: true })
-    axios.get(`http://pokeapi.co/api/v2/pokemon/${this.state.pokemon.toLowerCase()}/`)
+    let self = this;
+    axios.get(`http://pokeapi.co/api/v2/pokemon/${this.state.pokeSearch.toLowerCase()}/`)
     .then((res) => {
       console.log('res ', res);
-    })
+      self.setState({ data: res.data });
+      self.setState({ loading: false });
+    }).catch((err) => console.log(err));
   }
 
 }
