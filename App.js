@@ -5,7 +5,7 @@ import Search from './src/pages/Search';
 
 export default class App extends Component {
 
-  state = { rootPage: 'search', pokeSearch: '' }
+  state = { rootPage: 'search', pokeSearch: '', loading: false }
 
   render() {
     return (

@@ -12,9 +12,9 @@ export default class HeaderComponent extends Component {
     return (
       <Header searchBar rounded >
         <Item>
-          <Icon name="ios-search" onPress={ this.pokeSearch } />
+          <Icon name="ios-search" onPress={ this.props.propMethod } />
           <Input value={  this.state.pokeSearch } 
-            onChangeText={(pokeSearch) => this.setState({pokeSearch})}
+            onChangeText={(pokeSearch) => this.setState({ pokeSearch })}
             placeholder="search pokemon..." />
         </Item>
       </Header>
