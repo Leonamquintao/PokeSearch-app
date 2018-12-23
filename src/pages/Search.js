@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import SearchBody from './SearchBody';
 import Loader from '.././components/Loader';
-import HeaderComponent from '.././components/HeaderComponent';
+import { Header, Item, Icon, Input } from 'native-base';
 
 export default class Search extends Component {
 
@@ -16,7 +16,14 @@ export default class Search extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <HeaderComponent propMethod={ () => this.searchPokemon() } />
+        <Header searchBar rounded >
+          <Item>
+            <Icon name="ios-search" onPress={ () => this.searchPokemon() } />
+            <Input value={  this.state.pokeSearch } 
+              onChangeText={(pokeSearch) => this.setState({ pokeSearch })}
+              placeholder="search pokemon..." />
+          </Item>
+      </Header>
         { this.renderBody() }
       </View>
     );
@@ -27,21 +34,20 @@ export default class Search extends Component {
     if(this.state.loading) {
       return ( <Loader /> )
     } else {
-      return ( <SearchBody /> )
+      return ( <SearchBody data={ this.state.data }/> )
     }
   }
 
   searchPokemon() {
+    console.log('state => ', this.state)
     this.setState({ loading: true })
     let self = this;
     axios.get(`http://pokeapi.co/api/v2/pokemon/${this.state.pokeSearch.toLowerCase()}/`)
     .then((res) => {
-      console.log('res ', res);
-      self.setState({ data: res.data });
-      self.setState({ loading: false });
+      console.log('res ', res.data);
+      self.setState({ data: res.data, loading: false });
     }).catch((err) => console.log(err));
   }
-
 }
 
 const styles = StyleSheet.create({
