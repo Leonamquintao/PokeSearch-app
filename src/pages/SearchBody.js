@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Image, ImageBackground, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { List, ListItem } from 'native-base';
+
+var height = Dimensions.get('window').height;
+var width = Dimensions.get('window').width;
 
 export default class SearchBody extends Component {
   constructor(props) {
     super(props);
-    console.log('this.props.data ', this.props.data)
   }
   render() {
-
     var pokemon = this.props.data;
-    console.log('pokemon ', pokemon)
+
     if(Object.getOwnPropertyNames(pokemon).length === 0) { return <View /> }
     
     return (
+      <ImageBackground style={styles.background} source={ require('.././assets/img/background.png')}>
       <ScrollView>
         <Text style={styles.header}> 
-          #:{ pokemon.id } - { pokemon.name.toUpperCase() }
+          #{ pokemon.id } - { pokemon.name.toUpperCase() }
         </Text>
+
         <View style={styles.bodyStyle}>
           <Image style={styles.sprite} source={{ uri: pokemon.sprites.front_default }} />
         </View>
@@ -49,31 +52,35 @@ export default class SearchBody extends Component {
           </List>
         </View>
       </ScrollView>
+      </ImageBackground>
     );
    
   }
-
-  /* METHODS */
-  
-
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    height: height,
+    width: width,
+  }, 
   header: {
     fontSize: 30,
-    color: 'red',
+    fontWeight: 'bold',
+    color: '#fff',
     textAlign: 'center'
   },
   bodyStyle: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1
   },
   sprite: {
     width: 250,
     height: 250,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   info: {
     flex: 1,
