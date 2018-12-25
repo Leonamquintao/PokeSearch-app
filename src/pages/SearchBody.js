@@ -48,13 +48,12 @@ export default class SearchBody extends Component {
               <Text>{item.ability.name}</Text>
             </ListItem>
           }>
-
           </List>
+          
         </View>
       </ScrollView>
       </ImageBackground>
     );
-   
   }
 }
 
