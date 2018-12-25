@@ -39,12 +39,11 @@ export default class Search extends Component {
   }
 
   searchPokemon() {
-    console.log('state => ', this.state)
     this.setState({ loading: true })
     let self = this;
     axios.get(`http://pokeapi.co/api/v2/pokemon/${this.state.pokeSearch.toLowerCase()}/`)
     .then((res) => {
-      console.log('res ', res.data);
+      // console.log('res ', res.data);
       self.setState({ data: res.data, loading: false });
     }).catch((err) => console.log(err));
   }
